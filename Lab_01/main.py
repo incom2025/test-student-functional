@@ -24,9 +24,9 @@ def standard_discount(subtotal: float) -> float:
     return 0.0
 
 
-def standard_tax(amount: float) -> float:
-    return amount * 0.20
-
+#def standard_tax(amount: float) -> float:
+#    return amount * 0.20
+standard_tax = 0.20
 
 def process_order(
     order: Order,
