@@ -28,9 +28,7 @@ def make_order(
     meta: dict[str, str] | None = None,
     paid: bool = False,
 ) -> Order:
-    safe_meta = MappingProxyType(
-        dict(meta or {})
-    )
+    safe_meta = MappingProxyType(dict(meta or {}))
 
     return Order(
         order_id=order_id,
