@@ -1,4 +1,4 @@
-from closures import make_counter, make_multiplier
+from closures import make_call_counter, make_multiplier
 from decorators import calculate_sum, fibonacci
 
 
@@ -11,7 +11,7 @@ def main() -> None:
     # -----------------------------
     print("\n1. Counter closure")
 
-    counter = make_counter()
+    counter = make_call_counter()
 
     print(counter())
     print(counter())
