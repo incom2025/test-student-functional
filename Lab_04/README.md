@@ -44,3 +44,18 @@ Lab_04/
 
 ```bash
 python main.py
+## Recursion limit and TCO
+
+Python has a recursion limit that restricts the maximum recursion depth.
+The current recursion limit can be checked with `sys.getrecursionlimit()`.
+
+If the recursion depth becomes too large, Python can raise
+`RecursionError`.
+
+Python does not support Tail Call Optimization (TCO).
+
+Therefore, tail recursion is not optimized into iteration in Python.
+Every recursive call still creates a new stack frame.
+
+For large input values, an iterative solution can therefore be safer
+than deep recursion.
