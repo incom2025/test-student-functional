@@ -1,32 +1,40 @@
 from __future__ import annotations
 
 from functools import reduce
-from typing import Any, Callable, Iterable
+from typing import Any, Callable
 
 
 def pipeline(
-    steps: Iterable[Callable[[Any], Any]],
-    value: Any,
-) -> Any:
+    *steps: Callable[[Any], Any],
+) -> Callable[[Any], Any]:
     """
-    Послідовно застосовує всі функції steps до value.
-    Реалізація виконана через functools.reduce.
+    Створює функціональний конвеєр через functools.reduce.
+
+    Приклад:
+        process = pipeline(
+            normalize,
+            validate,
+            transform,
+        )
+
+        result = process(value)
     """
-    return reduce(
-        lambda current, func: func(current),
-        steps,
-        value,
-    )
+
+    def apply(value: Any) -> Any:
+        return reduce(
+            lambda current, func: func(current),
+            steps,
+            value,
+        )
+
+    return apply
 
 
 if __name__ == "__main__":
-    result = pipeline(
-        [
-            lambda x: x + 2,
-            lambda x: x * 3,
-            str,
-        ],
-        5,
+    process = pipeline(
+        lambda x: x + 2,
+        lambda x: x * 3,
+        str,
     )
 
-    print(result)
+    print(process(5))
