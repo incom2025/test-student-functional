@@ -1,4 +1,4 @@
-from model import Item, Order
+from model import Item, make_order
 from core import (
     add_item,
     remove_item,
@@ -10,20 +10,19 @@ from core import (
 
 
 def main() -> None:
-    # Початкове замовлення
-    order = Order(
-        number=1,
-        customer="Іван Петренко",
+    order = make_order(
+        order_id=1,
         items=(),
         tags=frozenset(),
+        meta={
+            "customer": "Іван Петренко",
+        },
         paid=False,
-        meta={},
     )
 
     print("Початкове замовлення:")
     print(order)
 
-    # Створюємо товари
     laptop = Item(
         name="Laptop",
         price=35000.0,
@@ -36,21 +35,18 @@ def main() -> None:
         quantity=2,
     )
 
-    # Додаємо товари
     order = add_item(order, laptop)
     order = add_item(order, mouse)
 
     print("\nПісля додавання товарів:")
     print(order)
 
-    # Додаємо теги
     order = add_tag(order, "priority")
     order = add_tag(order, "online")
 
     print("\nПісля додавання тегів:")
     print(order)
 
-    # Оновлюємо метадані
     order = update_meta(
         order,
         "delivery",
@@ -60,17 +56,20 @@ def main() -> None:
     print("\nПісля оновлення meta:")
     print(order)
 
-    # Позначаємо замовлення оплаченим
     order = mark_paid(order)
 
     print("\nПісля оплати:")
     print(order)
 
-    # Видаляємо товар
-    order = remove_item(order, "Mouse")
+    order = remove_item(
+        order,
+        "Mouse",
+    )
 
-    # Видаляємо тег
-    order = remove_tag(order, "priority")
+    order = remove_tag(
+        order,
+        "priority",
+    )
 
     print("\nФінальний стан:")
     print(order)
