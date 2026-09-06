@@ -5,7 +5,7 @@ from typing import Callable
 
 Order = dict[str, object]
 DiscountPolicy = Callable[[float], float]
-TaxPolicy =  float
+TaxPolicy =  Callable[[float], float]
 
 
 def is_paid_order(order: Order) -> bool:
