@@ -1,4 +1,3 @@
-from loaders import load_json, load_csv
 from models import StudentRank, rank_students
 from pipeline import pipeline
 
