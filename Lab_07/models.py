@@ -47,7 +47,17 @@ def rank_students(
 
     return sorted(ranked, reverse=True)
 
-
+def top_n(
+    students: list[StudentRank],
+    n: int = 3,
+) -> list[StudentRank]:
+    """
+    Повертає Top-N студентів за балом.
+    """
+    return sorted(
+        students,
+        reverse=True,
+    )[:n]
 if __name__ == "__main__":
     students = [
         {"name": "Anna", "score": 92},
