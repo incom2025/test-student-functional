@@ -35,12 +35,7 @@ class Div:
 
 Expr: TypeAlias = Num | Add | Sub | Mul | Div
 
-Operation: TypeAlias = Literal[
-    "add",
-    "sub",
-    "mul",
-    "div",
-]
+Operation: TypeAlias = str
 
 
 class ExprOperation(Protocol):
